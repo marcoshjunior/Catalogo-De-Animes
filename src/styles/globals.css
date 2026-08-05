@@ -1,0 +1,28 @@
+:root {
+  --bg: #0a0a0a;
+  --panel: #141414;
+  --panel-alt: #1b1b1b;
+  --border: #2a2a2a;
+  --yellow: #ffc700;
+  --yellow-dim: #7a5f00;
+  --paper: #f3f1e7;
+  --gray: #8f8c82;
+  --radius: 2px;
+  --shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg);
+  color: var(--paper);
+}

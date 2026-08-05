@@ -1,0 +1,15 @@
+@import "../../styles/globals.css";
+
+nav {
+  padding: 25px;
+  border-bottom: 3px solid var(--yellow);
+}
+
+nav p {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+nav p span {
+  color: var(--yellow);
+}
