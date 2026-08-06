@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Sekuya&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
 :root {
   --bg: #0a0a0a;
   --panel: #141414;
@@ -22,7 +24,7 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Work Sans", sans-serif;
   background-color: var(--bg);
   color: var(--paper);
 }
