@@ -4,16 +4,53 @@ function removerDuplicados(lista) {
   return [...new Map(lista.map((anime) => [anime.mal_id, anime])).values()];
 }
 
-export async function buscarTopAnimes() {
-  const response = await fetch(`${BASE_URL}/top/anime`);
-  const data = await response.json();
+function esperar() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, 2000);
+  });
+}
 
-  return removerDuplicados(data.data);
+function transformarJikan(anime) {
+  let genres = anime.genres.map((g) => g.name);
+  return {
+    id: anime.mal_id,
+    image: anime.images.jpg.image_url,
+    title: anime.title,
+    episodes: anime.episodes,
+    year: anime.year,
+    score: anime.score,
+    genres: genres,
+  };
+}
+
+export async function buscarTopAnimes() {
+  for (let i = 0; i < 3; i++) {
+    const response = await fetch(`${BASE_URL}/top/anime`);
+    if (!response.ok) {
+      await esperar();
+    } else {
+      const data = await response.json();
+      const animes = removerDuplicados(data.data);
+      let animesTranformados = animes.map(transformarJikan);
+      return animesTranformados;
+    }
+  }
+  throw new Error("Erro ao buscar os animes");
 }
 
 export async function buscarTemporadaAtual() {
-  const response = await fetch(`${BASE_URL}/seasons/now`);
-  const data = await response.json();
-
-  return removerDuplicados(data.data);
+  for (let i = 0; i < 3; i++) {
+    const response = await fetch(`${BASE_URL}/seasons/now`);
+    if (!response.ok) {
+      await esperar();
+    } else {
+      const data = await response.json();
+      const animes = removerDuplicados(data.data);
+      let animesTranformados = animes.map(transformarJikan);
+      return animesTranformados;
+    }
+  }
+  throw new Error("Erro ao buscar os animes");
 }

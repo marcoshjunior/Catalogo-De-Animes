@@ -1,5 +1,4 @@
 import styles from "./Hero.module.css";
-import SearchBar from "../SearchBar/SearchBar";
 
 export default function Hero() {
   return (
@@ -15,9 +14,7 @@ export default function Hero() {
           por categoria. Clique em qualquer capa para abrir a ficha completa.
         </p>
       </div>
-      <div>
-        <SearchBar />
-      </div>
+      <div></div>
     </>
   );
 }
