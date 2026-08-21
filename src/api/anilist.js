@@ -1,6 +1,6 @@
 function transformarAniList(anime) {
   return {
-    id: anime.id,
+    id: anime.idMal,
     image: anime.coverImage.large,
     title: anime.title.romaji,
     episodes: anime.episodes,

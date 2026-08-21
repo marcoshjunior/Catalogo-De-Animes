@@ -14,7 +14,6 @@ function Home() {
 
   async function carregarAnime(nome) {
     setCarregando(true);
-
     try {
       const lista = await buscarAnimesPorNome(nome);
       setAnimes(lista);
@@ -28,7 +27,6 @@ function Home() {
 
   async function carregarTop() {
     setCarregando(true);
-
     try {
       const lista = await buscarTopAnimes();
       setAnimes(lista);
@@ -42,7 +40,6 @@ function Home() {
 
   async function carregarTemporada() {
     setCarregando(true);
-
     try {
       const lista = await buscarTemporadaAtual();
       setAnimes(lista);

@@ -22,7 +22,25 @@ function transformarJikan(anime) {
     year: anime.year,
     score: anime.score,
     genres: genres,
+    synopsis: anime.synopsis,
+    studios: anime.studios.map((studios) => studios.name),
+    trailer: anime.trailer?.embed_url?.replace("autoplay=1", "autoplay=0"),
   };
+}
+
+export async function buscarAnimePorId(id) {
+  for (let i = 0; i < 3; i++) {
+    const response = await fetch(`${BASE_URL}/anime/${id}`);
+    if (!response.ok) {
+      await esperar();
+    } else {
+      const data = await response.json();
+      const anime = data.data;
+      let animeTransformado = transformarJikan(anime);
+      return animeTransformado;
+    }
+  }
+  throw new Error("Erro ao buscar os animes");
 }
 
 export async function buscarTopAnimes() {
