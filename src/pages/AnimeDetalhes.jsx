@@ -1,10 +1,11 @@
 import styles from "./AnimeDetalhes.module.css";
 import { useParams } from "react-router-dom";
-import { buscarAnimePorId } from "../api/jikan";
+import { buscarAnimePorId, buscarPersonagemPorId } from "../api/jikan";
 import { useEffect, useState } from "react";
 
 export default function AnimeDetalhes() {
   const [anime, setAnimes] = useState(null);
+  const [personagens, setPersonagens] = useState([]);
   const [erro, setErro] = useState("");
   const [carregando, setCarregando] = useState(false);
 
@@ -23,8 +24,22 @@ export default function AnimeDetalhes() {
     }
   }
 
+  async function carregarPersonagens(id) {
+    try {
+      const exibirPersonagens = await buscarPersonagemPorId(id);
+      setPersonagens(exibirPersonagens);
+      setErro("");
+    } catch (error) {
+      setErro("erro");
+    }
+  }
+
   useEffect(() => {
-    carregarAnime(id);
+    async function carregarDados() {
+      await carregarAnime(id);
+      await carregarPersonagens(id);
+    }
+    carregarDados();
   }, [id]);
 
   return (
@@ -45,9 +60,13 @@ export default function AnimeDetalhes() {
           </div>
           <p>Synopse: {anime.synopsis}</p>
           <p>Studios: {anime.studios}</p>
-          {anime.trailer && (
-            <iframe src={anime.trailer} title={`Trailer de ${anime.title}`} />
-          )}
+          {personagens.slice(0, 6).map((personagens) => (
+            <div key={personagens.id}>
+              <img src={personagens.image} alt={personagens.name} />
+              <p>{personagens.name}</p>
+              <span>{personagens.role}</span>
+            </div>
+          ))}
         </div>
       )}
     </div>

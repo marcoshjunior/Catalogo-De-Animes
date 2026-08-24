@@ -24,7 +24,6 @@ function transformarJikan(anime) {
     genres: genres,
     synopsis: anime.synopsis,
     studios: anime.studios.map((studios) => studios.name),
-    trailer: anime.trailer?.embed_url?.replace("autoplay=1", "autoplay=0"),
   };
 }
 
@@ -41,6 +40,29 @@ export async function buscarAnimePorId(id) {
     }
   }
   throw new Error("Erro ao buscar os animes");
+}
+
+function transformarPersonagens(personagem) {
+  return {
+    id: personagem.character.mal_id,
+    name: personagem.character.name,
+    image: personagem.character.images.jpg.image_url,
+    role: personagem.role,
+  };
+}
+
+export async function buscarPersonagemPorId(id) {
+  for (let i = 0; i < 3; i++) {
+    const response = await fetch(`${BASE_URL}/anime/${id}/characters`);
+    if (!response.ok) {
+      await esperar();
+    } else {
+      const data = await response.json();
+      const personagens = data.data.map(transformarPersonagens);
+      return personagens;
+    }
+  }
+  throw new Error("Erro ao buscar personagens");
 }
 
 export async function buscarTopAnimes() {

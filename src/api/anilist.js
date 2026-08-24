@@ -15,7 +15,7 @@ export async function buscarAnimesPorNome(nomeAnime) {
   query ($search: String!) {
     Page {
       media(search: $search, type: ANIME) {
-        id
+        idMal
         title {
           romaji
           english
