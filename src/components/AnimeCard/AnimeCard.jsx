@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function AnimeCard({ anime }) {
   return (
-    <Link to={`/anime/${anime.id}`}>
+    <Link to={`/anime/${anime.idMal}`}>
       <div>
         <img src={anime.image} alt={anime.title} />
         <h2>{anime.title}</h2>

@@ -1,15 +1,55 @@
 import styles from "./AnimeDetalhes.module.css";
-import { useParams } from "react-router-dom";
-import { buscarAnimePorId, buscarPersonagemPorId } from "../api/jikan";
+import { useParams, useNavigate } from "react-router-dom";
+import { buscarAnimePorId } from "../api/anilist";
+import { buscarPersonagemPorId, buscarStaffPorId } from "../api/jikan";
 import { useEffect, useState } from "react";
+
+function selecionarPersonagens(anime) {
+  const principais = anime.characters.filter(
+    (personagem) => personagem.role === "MAIN",
+  );
+  const suporte = anime.characters.filter(
+    (personagem) => personagem.role === "SUPPORTING",
+  );
+  return [...principais, ...suporte].slice(0, 6);
+}
+
+function selecionarStaff(staff) {
+  const cargosDesejados = [
+    "Original Creator",
+    "Director",
+    "Original Character Design",
+    "Character Design",
+    "Music Producer",
+    "Storyboard",
+    "Animation Director",
+    "Action Animation Director",
+  ];
+
+  const selecionados = [];
+
+  for (const cargo of cargosDesejados) {
+    const pessoa = staff.find(
+      (pessoa) =>
+        pessoa.role.includes(cargo) &&
+        !selecionados.some((p) => p.id === pessoa.id),
+    );
+    if (pessoa) {
+      selecionados.push(pessoa);
+    }
+    if (selecionados.length === 7) {
+      break;
+    }
+  }
+  return selecionados;
+}
 
 export default function AnimeDetalhes() {
   const [anime, setAnimes] = useState(null);
-  const [personagens, setPersonagens] = useState([]);
   const [erro, setErro] = useState("");
   const [carregando, setCarregando] = useState(false);
-
   const { id } = useParams();
+  const navigate = useNavigate();
 
   async function carregarAnime(id) {
     setCarregando(true);
@@ -24,51 +64,79 @@ export default function AnimeDetalhes() {
     }
   }
 
+  /*
   async function carregarPersonagens(id) {
     try {
       const exibirPersonagens = await buscarPersonagemPorId(id);
       setPersonagens(exibirPersonagens);
       setErro("");
     } catch (error) {
-      setErro("erro");
+      setErro("Ocorreu um erro ao buscar personagens.");
     }
   }
+    */
+  /*
+  async function carregarStaff(id) {
+    try {
+      const exibirStaff = await buscarStaffPorId(id);
+      setStaff(exibirStaff);
+      setErro("");
+    } catch (error) {
+      setErro("Ocorreu um erro ao buscar staff");
+    }
+  }
+    */
 
   useEffect(() => {
     async function carregarDados() {
       await carregarAnime(id);
+      /*
       await carregarPersonagens(id);
+      await carregarStaff(id);
+      */
     }
     carregarDados();
   }, [id]);
 
   return (
     <div>
+      <button onClick={() => navigate("/")}>Voltar</button>
       {carregando && <p>Carregando...</p>}
       {erro && <p>{erro}</p>}
       {anime && (
         <div>
-          <h1>{anime.title}</h1>
-          <img src={anime.image} />
+          <h1>{anime.title.romaji}</h1>
+          <img src={anime.coverImage.large} />
           <p>Episódios: {anime.episodes}</p>
-          <p>Ano: {anime.year}</p>
-          <p>Nota: {anime.score}</p>
-          <div>
-            {anime.genres.slice(0, 3).map((genre) => (
-              <span key={genre}>{genre}</span>
-            ))}
-          </div>
-          <p>Synopse: {anime.synopsis}</p>
-          <p>Studios: {anime.studios}</p>
-          {personagens.slice(0, 6).map((personagens) => (
-            <div key={personagens.id}>
-              <img src={personagens.image} alt={personagens.name} />
-              <p>{personagens.name}</p>
-              <span>{personagens.role}</span>
+          <p>Ano: {anime.startDate.year}</p>
+          <p>
+            Nota:{" "}
+            {anime.averageScore ? (anime.averageScore / 10).toFixed(1) : "N/A"}
+          </p>
+          <p>Synopse: {anime.description}</p>
+          <h2>Equipe de produção</h2>
+          {selecionarStaff(anime.staff).map((pessoa) => (
+            <div key={pessoa.id}>
+              <p>{pessoa.name}</p>
+              <p>{pessoa.role}</p>
+            </div>
+          ))}
+          {selecionarPersonagens(anime).map((personagem) => (
+            <div key={personagem.id}>
+              <img src={personagem.image} alt={personagem.name} />
+              <p>{personagem.name}</p>
             </div>
           ))}
         </div>
       )}
     </div>
   );
+  /* 
+          <div>
+            {anime.genres.slice(0, 3).map((genre) => (
+              <span key={genre}>{genre}</span>
+            ))}
+          </div>
+          <p>Studios: {anime.studios}</p>
+  */
 }
