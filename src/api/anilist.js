@@ -1,16 +1,3 @@
-function transformarAniList(anime) {
-  return {
-    idMal: anime.idMal,
-    image: anime.coverImage.large,
-    title: anime.title.romaji,
-    episodes: anime.episodes,
-    year: anime.startDate.year,
-    score: anime.averageScore,
-    genres: anime.genres,
-  };
-}
-
-// Usado no AnimeCards para buscar nome
 export async function buscarAnimesPorNome(nomeAnime) {
   const query = `
   query ($search: String!) {
@@ -55,25 +42,6 @@ export async function buscarAnimesPorNome(nomeAnime) {
   return animesTransformados;
 }
 
-function transformarPersonagens(personagem) {
-  return {
-    id: personagem.node.id,
-    name: personagem.node.name.full,
-    image: personagem.node.image.large,
-    role: personagem.role,
-  };
-}
-
-function transformarStaff(pessoa) {
-  return {
-    id: pessoa.node.id,
-    name: pessoa.node.name.full,
-    image: pessoa.node.image.large,
-    role: pessoa.role,
-  };
-}
-
-// Usado no AnimeDetalhes
 export async function buscarAnimePorId(id) {
   const query = `
     query ($id: Int) {
@@ -149,7 +117,49 @@ export async function buscarAnimePorId(id) {
   const staff = anime.staff.edges.map(transformarStaff);
   return {
     ...anime,
+    description: limparDescricao(anime.description),
     characters: personagens,
     staff: staff,
   };
+}
+
+function transformarAniList(anime) {
+  return {
+    idMal: anime.idMal,
+    image: anime.coverImage.large,
+    title: anime.title.romaji,
+    episodes: anime.episodes,
+    year: anime.startDate.year,
+    score: anime.averageScore,
+    genres: anime.genres,
+  };
+}
+
+function transformarPersonagens(personagem) {
+  return {
+    id: personagem.node.id,
+    name: personagem.node.name.full,
+    image: personagem.node.image.large,
+    role: personagem.role,
+  };
+}
+
+function transformarStaff(pessoa) {
+  return {
+    id: pessoa.node.id,
+    name: pessoa.node.name.full,
+    image: pessoa.node.image.large,
+    role: pessoa.role,
+  };
+}
+
+function limparDescricao(descricao) {
+  if (!descricao) return "";
+
+  return descricao
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<\/?i>/gi, "")
+    .replace(/<\/?b>/gi, "")
+    .replace(/<\/?em>/gi, "")
+    .replace(/<\/?strong>/gi, "");
 }

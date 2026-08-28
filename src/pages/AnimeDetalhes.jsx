@@ -1,7 +1,6 @@
 import styles from "./AnimeDetalhes.module.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { buscarAnimePorId } from "../api/anilist";
-import { buscarPersonagemPorId, buscarStaffPorId } from "../api/jikan";
 import { useEffect, useState } from "react";
 
 function selecionarPersonagens(anime) {
@@ -64,36 +63,9 @@ export default function AnimeDetalhes() {
     }
   }
 
-  /*
-  async function carregarPersonagens(id) {
-    try {
-      const exibirPersonagens = await buscarPersonagemPorId(id);
-      setPersonagens(exibirPersonagens);
-      setErro("");
-    } catch (error) {
-      setErro("Ocorreu um erro ao buscar personagens.");
-    }
-  }
-    */
-  /*
-  async function carregarStaff(id) {
-    try {
-      const exibirStaff = await buscarStaffPorId(id);
-      setStaff(exibirStaff);
-      setErro("");
-    } catch (error) {
-      setErro("Ocorreu um erro ao buscar staff");
-    }
-  }
-    */
-
   useEffect(() => {
     async function carregarDados() {
       await carregarAnime(id);
-      /*
-      await carregarPersonagens(id);
-      await carregarStaff(id);
-      */
     }
     carregarDados();
   }, [id]);
@@ -131,12 +103,4 @@ export default function AnimeDetalhes() {
       )}
     </div>
   );
-  /* 
-          <div>
-            {anime.genres.slice(0, 3).map((genre) => (
-              <span key={genre}>{genre}</span>
-            ))}
-          </div>
-          <p>Studios: {anime.studios}</p>
-  */
 }
