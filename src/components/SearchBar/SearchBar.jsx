@@ -1,5 +1,5 @@
-import { useState } from "react";
 import styles from "./SearchBar.module.css";
+import { useState } from "react";
 
 export default function SearchBar({ onAnime }) {
   const [nome, setNome] = useState("");
@@ -12,7 +12,7 @@ export default function SearchBar({ onAnime }) {
   return (
     <>
       <form onSubmit={envioDoAnime}>
-        <label htmlFor="nome">Anime: </label>
+        <label htmlFor="nome"></label>
         <input
           type="text"
           placeholder="nome do anime..."

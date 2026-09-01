@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Header from "../components/Header/Header";
 import Hero from "../components/Hero/Hero";
 import Filtros from "../components/Filtros/Filtros";
-import SearchBar from "../components/SearchBar/SearchBar";
 import Animes from "../components/Animes/Animes";
 import { buscarAnimesPorNome } from "../api/anilist";
 import { buscarTopAnimes, buscarTemporadaAtual } from "../api/jikan";
@@ -59,8 +58,7 @@ function Home() {
     <>
       <Header />
       <main>
-        <Hero />
-        <SearchBar onAnime={carregarAnime} />
+        <Hero onAnime={carregarAnime} />
         <Filtros onTop={carregarTop} onTemporada={carregarTemporada} />
         {carregando ? (
           <p>Carregando...</p>

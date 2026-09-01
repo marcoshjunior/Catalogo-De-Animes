@@ -1,1 +1,32 @@
 @import "../../styles/globals.css";
+
+.secao {
+  display: grid;
+  grid-template-columns: auto 90vw auto;
+  /*gap: 20px;*/
+  margin: 45px 0px 35px 0px;
+}
+.ficha {
+  grid-column: 2;
+}
+
+.subtitulo {
+  color: var(--yellow);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-family: "JetBrains Mono", monospace;
+  letter-spacing: 2px;
+}
+
+.titulo {
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.titulo span {
+  color: var(--yellow);
+}
+
+.sobre {
+  color: var(--gray);
+  margin-bottom: 30px;
+}

@@ -1,20 +1,23 @@
 import styles from "./Hero.module.css";
+import SearchBar from "../SearchBar/SearchBar";
 
-export default function Hero() {
+export default function Hero({ onAnime }) {
   return (
     <>
-      <div>
-        <p>// Catálago</p>
-        <h2>
-          Encontre o <span>Próximo</span> <br />
-          anime da sua lista
-        </h2>
-        <p>
-          Busque por título, veja o que está no ar nesta temporada ou explore
-          por categoria. Clique em qualquer capa para abrir a ficha completa.
-        </p>
-      </div>
-      <div></div>
+      <section className={styles.secao}>
+        <div className={styles.ficha}>
+          <p className={styles.subtitulo}>// Catálago</p>
+          <h2 className={styles.titulo}>
+            Encontre o <span>Próximo</span> <br />
+            anime da sua lista
+          </h2>
+          <p className={styles.sobre}>
+            Busque por título ou veja o que está no ar nesta temporada. Clique
+            em qualquer capa para abrir a ficha completa.
+          </p>
+          <SearchBar onAnime={onAnime} />
+        </div>
+      </section>
     </>
   );
 }

@@ -1,1 +1,41 @@
 @import "../../styles/globals.css";
+
+form form {
+  display: flex;
+  align-items: center;
+}
+form input {
+  width: 75%;
+  background: var(--panel);
+  border: 2px solid var(--paper);
+  flex: 1;
+  background: transparent;
+  padding: 13px 18px;
+  color: var(--paper);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 15px;
+}
+form input:focus-within {
+  border-color: var(--yellow);
+}
+form input::placeholder {
+  color: #6b6b64; /*talvez não precise*/
+}
+form input:focus {
+  outline: none;
+}
+
+form button {
+  background: var(--yellow);
+  color: #0a0a0a; /*talvez não precise*/
+  border: none;
+  padding: 16px 22px;
+  letter-spacing: 1px;
+  font-size: 13px; /*talvez não precise*/
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+form button:hover {
+  background: #ffd94d;
+}
