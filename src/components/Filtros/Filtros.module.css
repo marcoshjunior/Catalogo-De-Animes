@@ -1,1 +1,22 @@
 @import "../../styles/globals.css";
+
+.container {
+  background: var(--panel);
+  padding-left: 30px;
+  gap: 10px;
+}
+
+.botoes {
+  border: none;
+  padding: 15px 40px;
+  color: var(--gray);
+  background: var(--panel);
+  cursor: pointer;
+  transition: color 0.15s ease;
+  transition: border-color 0.15s ease;
+  border-bottom: 2px solid transparent;
+}
+.botoes:hover {
+  color: var(--yellow);
+  border-bottom-color: var(--yellow);
+}
