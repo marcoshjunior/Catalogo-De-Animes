@@ -8,6 +8,7 @@ import { buscarTopAnimes, buscarTemporadaAtual } from "../api/jikan";
 
 function Home() {
   const [animes, setAnimes] = useState([]);
+  const [tipoAnime, setTipoAnime] = useState("Top Animes");
   const [erro, setErro] = useState("");
   const [carregando, setCarregando] = useState(false);
 
@@ -17,6 +18,7 @@ function Home() {
       const lista = await buscarAnimesPorNome(nome);
       setAnimes(lista);
       setErro("");
+      setTipoAnime("Resultados:");
     } catch (error) {
       setErro("Ocorreu um erro ao buscar o anime.");
     } finally {
@@ -30,6 +32,7 @@ function Home() {
       const lista = await buscarTopAnimes();
       setAnimes(lista);
       setErro("");
+      setTipoAnime("Top Animes");
     } catch (error) {
       setErro("Ocorreu um erro ao buscar os animes.");
     } finally {
@@ -43,6 +46,7 @@ function Home() {
       const lista = await buscarTemporadaAtual();
       setAnimes(lista);
       setErro("");
+      setTipoAnime("Animes da Temporada");
     } catch (error) {
       setErro("Ocorreu um erro ao buscar os animes.");
     } finally {
@@ -60,13 +64,23 @@ function Home() {
       <main>
         <Hero onAnime={carregarAnime} />
         <Filtros onTop={carregarTop} onTemporada={carregarTemporada} />
-        {carregando ? (
-          <p>Carregando...</p>
-        ) : erro ? (
-          <p>{erro}</p>
-        ) : (
-          <Animes animes={animes} />
-        )}
+        <div className="resultadoAnimes">
+          <div className="tipoAnime">
+            <p>{tipoAnime}</p>
+            <p>
+              <span>{animes.length}</span> animes encontrados
+            </p>
+          </div>
+          <div className="animes">
+            {carregando ? (
+              <p className="carregando">Carregando...</p>
+            ) : erro ? (
+              <p>{erro}</p>
+            ) : (
+              <Animes animes={animes} />
+            )}
+          </div>
+        </div>
       </main>
     </>
   );

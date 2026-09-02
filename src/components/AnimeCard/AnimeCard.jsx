@@ -4,16 +4,21 @@ import { Link } from "react-router-dom";
 export default function AnimeCard({ anime }) {
   return (
     <Link to={`/anime/${anime.idMal}`}>
-      <div>
+      <div className={styles.card}>
         <img src={anime.image} alt={anime.title} />
-        <h2>{anime.title}</h2>
-        <p>Episódios: {anime.episodes}</p>
-        <p>Ano: {anime.year}</p>
-        <p>Nota: {anime.score}</p>
-        <div>
-          {anime.genres.slice(0, 3).map((genre) => (
-            <span key={genre}>{genre}</span>
-          ))}
+        <div className={styles.infos}>
+          <div className={styles.info1}>
+            <h2 className={styles.titulo}>{anime.title}</h2>
+            <p>Nota: {anime.score || "N/D"}</p>
+          </div>
+          <div className={styles.info2}>
+            <p>
+              Episódios: <span>{anime.episodes || "N/D"}</span>
+            </p>
+            <p>
+              Ano: <span>{anime.year || "N/D"}</span>
+            </p>
+          </div>
         </div>
       </div>
     </Link>

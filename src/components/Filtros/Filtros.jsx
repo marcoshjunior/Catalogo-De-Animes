@@ -7,7 +7,7 @@ export default function Filtros({ onTop, onTemporada }) {
         Top Animes
       </button>
       <button className={styles.botoes} onClick={onTemporada}>
-        Temporada
+        Animes da Temporada
       </button>
     </div>
   );

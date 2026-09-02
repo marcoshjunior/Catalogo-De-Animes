@@ -12,8 +12,8 @@ export default function Hero({ onAnime }) {
             anime da sua lista
           </h2>
           <p className={styles.sobre}>
-            Busque por título ou veja o que está no ar nesta temporada. Clique
-            em qualquer capa para abrir a ficha completa.
+            Busque por título ou veja o que está no ar nesta temporada.{" "}
+            <br></br>Clique em qualquer capa para abrir a ficha completa.
           </p>
           <SearchBar onAnime={onAnime} />
         </div>

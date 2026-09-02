@@ -85,6 +85,9 @@ export default function AnimeDetalhes() {
             Nota:{" "}
             {anime.averageScore ? (anime.averageScore / 10).toFixed(1) : "N/A"}
           </p>
+          {anime.genres.slice(0, 3).map((genre) => (
+            <span key={genre}>{genre}</span>
+          ))}
           <p>Synopse: {anime.description}</p>
           <h2>Equipe de produção</h2>
           {selecionarStaff(anime.staff).map((pessoa) => (

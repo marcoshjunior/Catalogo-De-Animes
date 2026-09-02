@@ -12,6 +12,9 @@
   color: var(--gray);
   background: var(--panel);
   cursor: pointer;
+  font-weight: 700;
+  font-family: "JetBrains Mono", monospace;
+  text-transform: uppercase;
   transition: color 0.15s ease;
   transition: border-color 0.15s ease;
   border-bottom: 2px solid transparent;

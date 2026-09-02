@@ -31,6 +31,7 @@ form button {
   border: none;
   padding: 16px 22px;
   letter-spacing: 1px;
+  font-weight: 700;
   font-size: 13px; /*talvez não precise*/
   text-transform: uppercase;
   cursor: pointer;

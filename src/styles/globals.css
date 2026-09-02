@@ -28,3 +28,36 @@ body {
   background-color: var(--bg);
   color: var(--paper);
 }
+
+.resultadoAnimes {
+  display: grid;
+  grid-template-columns: auto 90vw auto;
+  gap: 30px;
+}
+.resultadoAnimes div {
+  grid-column: 2;
+}
+
+.tipoAnime {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  color: var(--gray);
+  font-weight: 700;
+  font-family: "JetBrains Mono", monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.tipoAnime span {
+  color: var(--yellow);
+}
+.carregando {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--gray);
+  font-weight: 700;
+  font-family: "JetBrains Mono", monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}

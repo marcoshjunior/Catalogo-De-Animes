@@ -130,7 +130,7 @@ function transformarAniList(anime) {
     title: anime.title.romaji,
     episodes: anime.episodes,
     year: anime.startDate.year,
-    score: anime.averageScore,
+    score: anime.averageScore ? anime.averageScore / 10 : null,
     genres: anime.genres,
   };
 }
