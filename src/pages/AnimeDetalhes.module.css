@@ -1,1 +1,135 @@
 @import "../styles/globals.css";
+
+.header {
+  position: fixed;
+  width: 100%;
+  height: px;
+  top: 0;
+  background: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(4px);
+  z-index: 2;
+  padding: 10px 0px 10px 0px;
+  border-bottom: 1px solid var(--border);
+}
+.header button {
+  border: none;
+  color: white;
+  background: var(--bg);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-left: 15px;
+  padding: 10px 20px 10px 20px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: color 0.1s ease;
+  transition: border 0.1s ease;
+}
+.header button:hover {
+  color: var(--yellow);
+  border: 1px solid var(--yellow);
+}
+
+.detalhesContainer {
+  padding-top: 70px;
+  display: grid;
+  grid-template-columns: auto 90vw auto;
+}
+.detalhes {
+  grid-column: 2;
+}
+.detalhes h3 {
+  color: var(--gray);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.detalhes .inicio {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 50px;
+  margin: 20px 0px 30px 0px;
+}
+.inicio .sobre {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sobre p {
+  color: var(--gray);
+}
+.sobre p .spanSobre {
+  color: var(--yellow);
+}
+.sobre .generos {
+  color: var(--gray);
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.sobre .generos span {
+  border: 1px solid var(--gray);
+  padding: 5px 10px 5px 10px;
+}
+
+.detalhes .synopse {
+  margin: 10px 0 25px 0;
+}
+.synopse p {
+  color: var(--paper);
+}
+
+.detalhes .producao {
+  margin: 10px 0 25px 0;
+}
+.producao .pessoas {
+  background: var(--gray);
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 3px;
+}
+.pessoas .pessoa {
+  background: var(--panel-alt);
+  padding: 15px 0 15px 15px;
+  flex-grow: 1;
+}
+.pessoa .nome {
+  font-weight: 700;
+}
+.pessoa .funcao {
+  color: var(--yellow);
+}
+
+.detalhes .containerPersonagens {
+  margin: 10px 0 25px 0;
+}
+.containerPersonagens .personagens {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 50px;
+}
+.personagens img {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.personagens p {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .detalhesContainer {
+    grid-template-columns: auto 70vw auto;
+  }
+}
+
+@media (max-width: 612px) {
+  .detalhes .inicio {
+    flex-direction: column;
+  }
+}

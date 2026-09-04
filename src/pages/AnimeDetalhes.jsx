@@ -72,38 +72,75 @@ export default function AnimeDetalhes() {
 
   return (
     <div>
-      <button onClick={() => navigate("/")}>Voltar</button>
-      {carregando && <p>Carregando...</p>}
-      {erro && <p>{erro}</p>}
-      {anime && (
-        <div>
-          <h1>{anime.title.romaji}</h1>
-          <img src={anime.coverImage.large} />
-          <p>Episódios: {anime.episodes}</p>
-          <p>Ano: {anime.startDate.year}</p>
-          <p>
-            Nota:{" "}
-            {anime.averageScore ? (anime.averageScore / 10).toFixed(1) : "N/A"}
-          </p>
-          {anime.genres.slice(0, 3).map((genre) => (
-            <span key={genre}>{genre}</span>
-          ))}
-          <p>Synopse: {anime.description}</p>
-          <h2>Equipe de produção</h2>
-          {selecionarStaff(anime.staff).map((pessoa) => (
-            <div key={pessoa.id}>
-              <p>{pessoa.name}</p>
-              <p>{pessoa.role}</p>
+      <div className={styles.header}>
+        <button onClick={() => navigate("/")}>Voltar</button>
+      </div>
+
+      <div className={styles.detalhesContainer}>
+        {carregando && <p>Carregando...</p>}
+        {erro && <p>{erro}</p>}
+        {anime && (
+          <div className={styles.detalhes}>
+            <div className={styles.inicio}>
+              <div className={styles.imagem}>
+                <img src={anime.coverImage.large} />
+              </div>
+              <div className={styles.sobre}>
+                <h1>{anime.title.romaji}</h1>
+                <p>
+                  Episódios:{" "}
+                  <span className={styles.spanSobre}>{anime.episodes}</span>
+                </p>
+                <p>
+                  Ano:{" "}
+                  <span className={styles.spanSobre}>
+                    {anime.startDate.year}
+                  </span>
+                </p>
+                <p>
+                  Nota:{" "}
+                  <span className={styles.spanSobre}>
+                    {anime.averageScore
+                      ? (anime.averageScore / 10).toFixed(1)
+                      : "N/A"}
+                  </span>
+                </p>
+                <p className={styles.generos}>
+                  {anime.genres.slice(0, 3).map((genre) => (
+                    <span key={genre}>{genre}</span>
+                  ))}
+                </p>
+              </div>
             </div>
-          ))}
-          {selecionarPersonagens(anime).map((personagem) => (
-            <div key={personagem.id}>
-              <img src={personagem.image} alt={personagem.name} />
-              <p>{personagem.name}</p>
+            <div className={styles.synopse}>
+              <h3>Synopse</h3>
+              <p>{anime.description}</p>
             </div>
-          ))}
-        </div>
-      )}
+            <div className={styles.producao}>
+              <h3>Equipe de produção</h3>
+              <div className={styles.pessoas}>
+                {selecionarStaff(anime.staff).map((pessoa) => (
+                  <div className={styles.pessoa} key={pessoa.id}>
+                    <p className={styles.nome}>{pessoa.name}</p>
+                    <p className={styles.funcao}>{pessoa.role}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className={styles.containerPersonagens}>
+              <h3>Personagens</h3>
+              <div className={styles.personagens}>
+                {selecionarPersonagens(anime).map((personagem) => (
+                  <div key={personagem.id}>
+                    <img src={personagem.image} alt={personagem.name} />
+                    <p>{personagem.name}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

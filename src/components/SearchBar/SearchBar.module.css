@@ -40,3 +40,14 @@ form button {
 form button:hover {
   background: #ffd94d;
 }
+
+@media (min-width: 768px) {
+  form input {
+    width: 50%;
+  }
+}
+@media (min-width: 998px) {
+  form input {
+    width: 35%;
+  }
+}

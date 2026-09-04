@@ -9,7 +9,9 @@ export default function AnimeCard({ anime }) {
         <div className={styles.infos}>
           <div className={styles.info1}>
             <h2 className={styles.titulo}>{anime.title}</h2>
-            <p>Nota: {anime.score || "N/D"}</p>
+            <p>
+              Nota: <span>{anime.score || "N/D"}</span>
+            </p>
           </div>
           <div className={styles.info2}>
             <p>

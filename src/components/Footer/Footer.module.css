@@ -1,0 +1,15 @@
+@import "../../styles/globals.css";
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0 30px 0;
+  border-top: 1px solid var(--border);
+}
+.footer p {
+  color: var(--gray);
+}
+.footer p span {
+  color: var(--yellow);
+}

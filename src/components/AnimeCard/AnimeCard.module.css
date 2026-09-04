@@ -1,13 +1,20 @@
-.card {
-  background-color: var(--panel);
-}
 a {
   text-decoration: none;
+}
+.card {
+  background-color: var(--panel);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 .card img {
   width: 100%;
   height: 400px;
   object-fit: cover;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 0 1px var(--yellow);
 }
 .infos {
   padding: 15px;
@@ -23,6 +30,13 @@ a {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.info1 p {
+  color: var(--gray);
+  font-family: "JetBrains Mono", monospace;
+}
+.info1 p span {
+  color: var(--yellow);
 }
 
 .info2 {
