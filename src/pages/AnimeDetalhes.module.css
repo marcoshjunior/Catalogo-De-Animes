@@ -40,6 +40,9 @@
 }
 .detalhes h3 {
   color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: "JetBrains Mono", monospace;
   padding-bottom: 10px;
   margin-bottom: 20px;
   border-bottom: 1px solid var(--border);
@@ -58,10 +61,13 @@
   gap: 10px;
 }
 .sobre p {
+  font-family: "JetBrains Mono", monospace;
   color: var(--gray);
 }
 .sobre p .spanSobre {
   color: var(--yellow);
+  font-weight: 700;
+  font-size: 19px;
 }
 .sobre .generos {
   color: var(--gray);

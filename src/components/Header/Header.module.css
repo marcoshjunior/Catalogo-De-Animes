@@ -1,7 +1,7 @@
 @import "../../styles/globals.css";
 
 nav {
-  padding: 25px;
+  padding: 15px 0px 15px 20px;
   border-bottom: 3px solid var(--yellow);
 }
 

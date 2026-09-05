@@ -17,7 +17,7 @@ a {
   box-shadow: 0 0 0 1px var(--yellow);
 }
 .infos {
-  padding: 15px;
+  padding: 5px 15px 15px 15px;
   color: white;
   display: flex;
   flex-direction: column;
@@ -27,6 +27,7 @@ a {
   font-weight: 700;
 }
 .titulo {
+  margin-bottom: 5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
