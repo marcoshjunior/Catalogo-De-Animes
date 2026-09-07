@@ -1,4 +1,6 @@
+// pesquisa animes pelo nome da API
 export async function buscarAnimesPorNome(nomeAnime) {
+  // define quais informações queremos
   const query = `
   query ($search: String!) {
     Page {
@@ -23,13 +25,16 @@ export async function buscarAnimesPorNome(nomeAnime) {
   }
 `;
 
+  // envia o nome pesquisado a query
   const variables = {
     search: nomeAnime,
   };
 
+  // faz a requisição post para API
   const response = await fetch("https://graphql.anilist.co", {
     method: "POST",
     headers: { "Content-Type": "application/json", Accept: "application/json" },
+    // transforma oa dados da requisição em JSON
     body: JSON.stringify({
       query: query,
       variables: variables,
@@ -37,12 +42,14 @@ export async function buscarAnimesPorNome(nomeAnime) {
   });
 
   const resultado = await response.json();
-  const animes = resultado.data.Page.media;
-  let animesTransformados = animes.map(transformarAniList);
+  const animes = resultado.data.Page.media; // pega a lista de animes retornada
+  let animesTransformados = animes.map(transformarAniList); // transforma cada anime ao formato do projeto
   return animesTransformados;
 }
 
+// busca um anime especifivo pelo IdMal
 export async function buscarAnimePorId(id) {
+  // Media: procura o anime pelo ID(idMal) do MyAnimeList
   const query = `
     query ($id: Int) {
       Media(idMal: $id, type: ANIME) {
@@ -94,6 +101,7 @@ export async function buscarAnimePorId(id) {
   `;
 
   const variables = {
+    // transforma o ID em numero
     id: Number(id),
   };
 
@@ -113,8 +121,9 @@ export async function buscarAnimePorId(id) {
 
   const resultado = await response.json();
   const anime = resultado.data.Media;
-  const personagens = anime.characters.edges.map(transformarPersonagens);
-  const staff = anime.staff.edges.map(transformarStaff);
+  const personagens = anime.characters.edges.map(transformarPersonagens); // transforma os personagens
+  const staff = anime.staff.edges.map(transformarStaff); // transforma a equipe
+  // devolve o anime com os dados ja transformados
   return {
     ...anime,
     description: limparDescricao(anime.description),
@@ -123,6 +132,7 @@ export async function buscarAnimePorId(id) {
   };
 }
 
+// adapta os dados do AniList para o formato que seus cards usam.
 function transformarAniList(anime) {
   return {
     idMal: anime.idMal,
@@ -135,6 +145,7 @@ function transformarAniList(anime) {
   };
 }
 
+// pega nome, imagem, ID e função do personagem.
 function transformarPersonagens(personagem) {
   return {
     id: personagem.node.id,
@@ -144,6 +155,7 @@ function transformarPersonagens(personagem) {
   };
 }
 
+// pega nome, imagem, ID e função da pessoa da equipe.
 function transformarStaff(pessoa) {
   return {
     id: pessoa.node.id,
@@ -153,6 +165,7 @@ function transformarStaff(pessoa) {
   };
 }
 
+// remove algumas tags HTML da descrição.
 function limparDescricao(descricao) {
   if (!descricao) return "";
 

@@ -11,7 +11,7 @@ export default function SearchBar({ onAnime }) {
 
   return (
     <>
-      <form onSubmit={envioDoAnime}>
+      <form className={styles.form} onSubmit={envioDoAnime}>
         <label htmlFor="nome"></label>
         <input
           type="text"
