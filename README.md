@@ -109,15 +109,15 @@ Depois, acesse o endereço mostrado pelo Vite no terminal.
 
 ### Página inicial
 
-### https://github.com/user-attachments/assets/b7be2055-c3a4-4376-864a-d3b9464beb1a
+![Página inicial](https://github.com/user-attachments/assets/b7be2055-c3a4-4376-864a-d3b9464beb1a)
 
 ### Pesquisa
 
-https://github.com/user-attachments/assets/a922f5dc-bb9f-40c6-bc24-db02bd355dd9
+![Pesquisa](https://github.com/user-attachments/assets/a922f5dc-bb9f-40c6-bc24-db02bd355dd9)
 
 ### Detalhes
 
-https://github.com/user-attachments/assets/144ed43c-1fd1-4882-a80f-6fb2c5d34e98
+![Detalhes](https://github.com/user-attachments/assets/144ed43c-1fd1-4882-a80f-6fb2c5d34e98)
 
 ## 📚 O que aprendi
 
